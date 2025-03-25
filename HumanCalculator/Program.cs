@@ -31,7 +31,7 @@ namespace HumanCalculator
             }
             Console.WriteLine("Thanks for playing!");
         }
-        public static IScore StartGame()
+        private static IScore StartGame()
         {
             IScore score = new Score();
             for (int i = 1; i <= Score.MaximumScore; i++)
@@ -55,7 +55,7 @@ namespace HumanCalculator
             score.Time.CalcAverageTime();
             return score;
         }
-        public static int GenerateNumbers()
+        private static int GenerateNumbers()
         {
             int a = rnd.Next(10, 100);
             int b = rnd.Next(10, 100);
@@ -63,58 +63,6 @@ namespace HumanCalculator
             return a * b;
         }
     }
-    internal class Score : IScore
-    {
-        public readonly static byte MaximumScore = 5;
-        public byte CurrentScore { get; set; } = 0;
-        public ITime Time { get; private set; }
-        public Score()
-        {
-            this.Time = new Time();
-        }
-        public void AddTime(double seconds)
-        {
-            this.Time.Times.Add(seconds);
-        }
-        public void AddScore()
-        {
-            this.CurrentScore++;
-        }
-    }
-    class Player : IPlayer
-    {
-        public string Name { get; private set; }
-        public IScore PlayerScore { get; private set; }
-        public Player(string name, IScore score)
-        {
-            this.Name = name;
-            this.PlayerScore = score;
-        }
-        public string GetStats()
-        {
-            return $"{Name}'s score is {PlayerScore.CurrentScore} out of {Score.MaximumScore} with Average time of {PlayerScore.Time.ShowAverageTime()}";
-        }
-    }
-    class Time : ITime
-    {
-        public List<double> Times { get; private set; }
-        public double AverageTime { get; private set; }
-        public Time()
-        {
-            Times = new List<double>();
-        }
-        public void CalcAverageTime()
-        {
-            double allTime = 0;
-            foreach (double t in Times)
-            {
-                allTime += t;
-            }
-            this.AverageTime = allTime / Score.MaximumScore;
-        }
-        public string ShowAverageTime()
-        {
-            return TimeSpan.FromSeconds(AverageTime).ToString(@"mm\:ss");
-        }
-    }
+    
+   
 }
