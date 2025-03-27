@@ -16,7 +16,7 @@ namespace HumanCalculator
     interface IScore
     {
         ITime Time { get; }
-        byte CurrentScore { get; set; }
+        byte CurrentScore { get; }
         void AddTime(double seconds);
         void AddScore();
     }

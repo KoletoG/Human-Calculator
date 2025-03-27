@@ -25,5 +25,12 @@ namespace TestingUnits
             score.Time.CalcAverageTime();
             Assert.Equal(expected, score.Time.AverageTime);
         }
+        [Fact]
+        public void AddingScore_ByOne_ReturnsExpectedResult()
+        {
+            Score score = new Score();
+            score.AddScore();
+            Assert.Equal(1, score.CurrentScore);
+        }
     }
 }

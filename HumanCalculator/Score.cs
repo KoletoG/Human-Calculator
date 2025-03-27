@@ -9,7 +9,7 @@ namespace HumanCalculator
    public class Score : IScore
     {
         public readonly static byte MaximumScore = 5;
-        public byte CurrentScore { get; set; } = 0;
+        public byte CurrentScore { get; private set; } = 0;
         public ITime Time { get; private set; }
         public Score()
         {
