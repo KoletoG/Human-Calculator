@@ -32,5 +32,15 @@ namespace TestingUnits
             score.AddScore();
             Assert.Equal(1, score.CurrentScore);
         }
+        [Fact]
+        public void AddingScore_OverMaximumScore_ThrowsException()
+        {
+            Score score = new Score();
+            for(int i = 0; i < Score.MaximumScore; i++)
+            {
+                score.AddScore();
+            }
+            Assert.Throws<Exception>(() => score.AddScore());
+        }
     }
 }

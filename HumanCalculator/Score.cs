@@ -21,6 +21,10 @@ namespace HumanCalculator
         }
         public void AddScore()
         {
+            if (this.CurrentScore >= MaximumScore)
+            {
+                throw new Exception("Your score cannot be higher than the maximum score");
+            }
             this.CurrentScore++;
         }
     }
