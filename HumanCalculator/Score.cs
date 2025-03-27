@@ -23,7 +23,7 @@ namespace HumanCalculator
         {
             if (this.CurrentScore >= MaximumScore)
             {
-                throw new Exception("Your score cannot be higher than the maximum score");
+                throw new MaximumScoreExceedingException(this.CurrentScore);
             }
             this.CurrentScore++;
         }

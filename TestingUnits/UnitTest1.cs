@@ -40,7 +40,7 @@ namespace TestingUnits
             {
                 score.AddScore();
             }
-            Assert.Throws<Exception>(() => score.AddScore());
+            Assert.Throws<MaximumScoreExceedingException>(() => score.AddScore());
         }
     }
 }
