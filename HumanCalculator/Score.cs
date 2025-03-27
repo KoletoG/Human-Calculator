@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HumanCalculator
 {
-    class Score : IScore
+   public class Score : IScore
     {
         public readonly static byte MaximumScore = 5;
         public byte CurrentScore { get; set; } = 0;

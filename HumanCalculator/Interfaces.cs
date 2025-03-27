@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HumanCalculator
 {
-    interface ITime
+    public interface ITime
     {
         List<double> Times { get; }
         double AverageTime { get; }
