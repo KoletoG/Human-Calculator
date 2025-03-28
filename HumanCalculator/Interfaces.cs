@@ -8,7 +8,7 @@ namespace HumanCalculator
 {
     public interface ITime
     {
-        List<double> Times { get; }
+        double[] Times { get; }
         double AverageTime { get; }
         void CalcAverageTime();
         string ShowAverageTime();

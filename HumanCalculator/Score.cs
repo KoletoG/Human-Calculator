@@ -8,16 +8,18 @@ namespace HumanCalculator
 {
    public class Score : IScore
     {
-        public readonly static byte MaximumScore = 5;
+        public const byte MaximumScore = 5;
         public byte CurrentScore { get; private set; } = 0;
         public ITime Time { get; private set; }
+        private byte currentLoop = 0;
         public Score()
         {
             this.Time = new Time();
         }
         public void AddTime(double seconds)
         {
-            this.Time.Times.Add(seconds);
+            this.Time.Times[currentLoop]=seconds;
+            currentLoop++;
         }
         public void AddScore()
         {
