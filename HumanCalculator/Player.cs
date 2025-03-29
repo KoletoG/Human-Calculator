@@ -8,9 +8,9 @@ namespace HumanCalculator
 {
     class Player : IPlayer
     {
-        public string Name { get; private set; }
+        public char[] Name { get; private set; }
         public IScore PlayerScore { get; private set; }
-        public Player(string name, IScore score)
+        public Player(char[] name, IScore score)
         {
             this.Name = name;
             this.PlayerScore = score;

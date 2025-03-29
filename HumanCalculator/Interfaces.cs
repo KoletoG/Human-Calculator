@@ -8,8 +8,8 @@ namespace HumanCalculator
 {
     public interface ITime
     {
-        double[] Times { get; }
-        double AverageTime { get; }
+        byte[] Times { get; }
+        byte AverageTime { get; }
         void CalcAverageTime();
         string ShowAverageTime();
     }
@@ -17,12 +17,12 @@ namespace HumanCalculator
     {
         ITime Time { get; }
         byte CurrentScore { get; }
-        void AddTime(double seconds);
+        void AddTime(byte seconds);
         void AddScore();
     }
     interface IPlayer
     {
-        string Name { get; }
+        char[] Name { get; }
         IScore PlayerScore { get; }
         string GetStats();
     }

@@ -16,7 +16,7 @@ namespace HumanCalculator
         {
             this.Time = new Time();
         }
-        public void AddTime(double seconds)
+        public void AddTime(byte seconds)
         {
             this.Time.Times[currentLoop]=seconds;
             currentLoop++;

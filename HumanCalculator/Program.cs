@@ -18,7 +18,7 @@ namespace HumanCalculator
                 {
                     IScore score = StartGame();
                     Console.WriteLine("Please type your nickname: ");
-                    string playerName = Console.ReadLine();
+                    char[] playerName = Console.ReadLine().ToCharArray();
                     IPlayer player = new Player(playerName, score);
                     streamWriter.WriteLine($"{player.GetStats()} at {DateTime.UtcNow}");
                     Console.WriteLine("If you want to play again press ENTER");
@@ -34,33 +34,33 @@ namespace HumanCalculator
         private static IScore StartGame()
         {
             IScore score = new Score();
-            for (int i = 1; i <= Score.MaximumScore; i++)
+            for (byte i = 1; i <= Score.MaximumScore; i++)
             {
-                int result = GenerateNumbers();
+                short result = GenerateNumbers();
                 stopwatch.Restart();
-                if (int.Parse(Console.ReadLine()) == result)
+                if (short.Parse(Console.ReadLine()) == result)
                 {
                     stopwatch.Stop();
-                    score.AddTime(stopwatch.Elapsed.TotalSeconds);
+                    score.AddTime((byte)stopwatch.Elapsed.TotalSeconds);
                     score.AddScore();
                     Console.WriteLine("Right!");
                 }
                 else
                 {
                     stopwatch.Stop();
-                    score.AddTime(stopwatch.Elapsed.TotalSeconds);
+                    score.AddTime((byte)stopwatch.Elapsed.TotalSeconds);
                     Console.WriteLine("Wrong!");
                 }
             }
             score.Time.CalcAverageTime();
             return score;
         }
-        private static int GenerateNumbers()
+        private static short GenerateNumbers()
         {
-            int a = rnd.Next(10, 100);
-            int b = rnd.Next(10, 100);
+            byte a = (byte)rnd.Next(10, 100);
+            byte b = (byte)rnd.Next(10, 100);
             Console.WriteLine($"{a} * {b}");
-            return a * b;
+            return (short)(a * b);
         }
     }
     
