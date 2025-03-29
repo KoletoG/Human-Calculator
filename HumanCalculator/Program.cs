@@ -18,7 +18,7 @@ namespace HumanCalculator
                 {
                     IScore score = StartGame();
                     Console.WriteLine("Please type your nickname: ");
-                    char[] playerName = Console.ReadLine().ToCharArray();
+                    string playerName = Console.ReadLine();
                     IPlayer player = new Player(playerName, score);
                     streamWriter.WriteLine($"{player.GetStats()} at {DateTime.UtcNow}");
                     Console.WriteLine("If you want to play again press ENTER");
@@ -34,33 +34,33 @@ namespace HumanCalculator
         private static IScore StartGame()
         {
             IScore score = new Score();
-            for (byte i = 1; i <= Score.MaximumScore; i++)
+            for (int i = 1; i <= Score.MaximumScore; i++)
             {
-                short result = GenerateNumbers();
+                int result = GenerateNumbers();
                 stopwatch.Restart();
-                if (short.Parse(Console.ReadLine()) == result)
+                if (int.Parse(Console.ReadLine()) == result)
                 {
                     stopwatch.Stop();
-                    score.AddTime((byte)stopwatch.Elapsed.TotalSeconds);
+                    score.AddTime(stopwatch.Elapsed.TotalSeconds);
                     score.AddScore();
                     Console.WriteLine("Right!");
                 }
                 else
                 {
                     stopwatch.Stop();
-                    score.AddTime((byte)stopwatch.Elapsed.TotalSeconds);
+                    score.AddTime(stopwatch.Elapsed.TotalSeconds);
                     Console.WriteLine("Wrong!");
                 }
             }
             score.Time.CalcAverageTime();
             return score;
         }
-        private static short GenerateNumbers()
+        private static int GenerateNumbers()
         {
-            byte a = (byte)rnd.Next(10, 100);
-            byte b = (byte)rnd.Next(10, 100);
+            int a = rnd.Next(10, 100);
+            int b = rnd.Next(10, 100);
             Console.WriteLine($"{a} * {b}");
-            return (short)(a * b);
+            return a * b;
         }
     }
     

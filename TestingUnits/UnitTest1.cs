@@ -17,7 +17,7 @@ namespace TestingUnits
         [InlineData(160,140,60)]
         [InlineData(180, 120, 60)]
         [InlineData(260, 240, 100)]
-        public void CalcAverageTime_WhenDividingByFive_ReturnsPossibleResult(byte a, byte b, byte expected)
+        public void CalcAverageTime_WhenDividingByFive_ReturnsPossibleResult(int a, int b, int expected)
         {
             Score score = new Score();
             score.AddTime(a);

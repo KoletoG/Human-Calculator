@@ -8,20 +8,20 @@ namespace HumanCalculator
 {
    public class Time : ITime
     {
-        public byte[] Times { get; private set; }
-        public byte AverageTime { get; private set; }
+        public double[] Times { get; private set; }
+        public double AverageTime { get; private set; }
         public Time()
         {
-            Times = new byte[Score.MaximumScore];
+            Times = new double[Score.MaximumScore];
         }
         public void CalcAverageTime()
         {
-            short allTime = 0;
-            foreach (byte t in Times)
+            double allTime = 0;
+            foreach (double t in Times)
             {
                 allTime += t;
             }
-            this.AverageTime = (byte)(allTime / Score.MaximumScore);
+            this.AverageTime = allTime / Score.MaximumScore;
         }
         public string ShowAverageTime()
         {
