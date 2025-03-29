@@ -41,14 +41,14 @@ namespace HumanCalculator
                 if (int.Parse(Console.ReadLine()) == result)
                 {
                     stopwatch.Stop();
-                    score.AddTime(stopwatch.Elapsed.TotalSeconds);
+                    score.AddTime((int)stopwatch.Elapsed.TotalSeconds);
                     score.AddScore();
                     Console.WriteLine("Right!");
                 }
                 else
                 {
                     stopwatch.Stop();
-                    score.AddTime(stopwatch.Elapsed.TotalSeconds);
+                    score.AddTime((int)stopwatch.Elapsed.TotalSeconds);
                     Console.WriteLine("Wrong!");
                 }
             }

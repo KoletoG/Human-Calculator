@@ -8,16 +8,16 @@ namespace HumanCalculator
 {
    public class Time : ITime
     {
-        public double[] Times { get; private set; }
-        public double AverageTime { get; private set; }
+        public int[] Times { get; private set; }
+        public int AverageTime { get; private set; }
         public Time()
         {
-            Times = new double[Score.MaximumScore];
+            Times = new int[Score.MaximumScore];
         }
         public void CalcAverageTime()
         {
-            double allTime = 0;
-            foreach (double t in Times)
+            int allTime = 0;
+            foreach (int t in Times)
             {
                 allTime += t;
             }

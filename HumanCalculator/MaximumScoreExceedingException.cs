@@ -8,7 +8,7 @@ namespace HumanCalculator
 {
     public class MaximumScoreExceedingException : Exception
     {
-        public MaximumScoreExceedingException(byte currentScore) : base($"Your score {currentScore+1} cannot be more than the maximum score {Score.MaximumScore}")
+        public MaximumScoreExceedingException(int currentScore) : base($"Your score {currentScore+1} cannot be more than the maximum score {Score.MaximumScore}")
         {
 
         }
