@@ -15,6 +15,7 @@ namespace HumanCalculator
         private ILogger<GameService> _logger;
         private ILogger<Score> scoreLogger;
         private ILogger<Time> timeLogger;
+        private readonly string fullPath = Path.GetFullPath("score.txt");
         public GameService(ILogger<GameService> logger, ILogger<Score> scoreLogger, ILogger<Time> timeLogger)
         {
             _logger = logger;
@@ -23,7 +24,7 @@ namespace HumanCalculator
         }
         public void RepeatGame()
         {
-            using (StreamWriter streamWriter = new StreamWriter(@"..\..\score.txt", true))
+            using (StreamWriter streamWriter = new StreamWriter(fullPath, true))
             {
                 try
                 {
@@ -38,7 +39,7 @@ namespace HumanCalculator
                 }
             }
         }
-        public IScore StartGame()
+        private IScore StartGame()
         {
             IScore score = new Score(scoreLogger,timeLogger);
             try

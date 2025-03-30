@@ -29,7 +29,6 @@ namespace HumanCalculator
     interface IGameService
     {
         void RepeatGame();
-        IScore StartGame();
     }
     internal class Interfaces
     {

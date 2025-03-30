@@ -8,7 +8,6 @@ using Serilog;
 using static System.Formats.Asn1.AsnWriter;
 namespace HumanCalculator
 {
-
     internal class Program
     {
         private static IServiceProvider _service;
@@ -60,9 +59,5 @@ namespace HumanCalculator
                 Log.CloseAndFlush();
             }
         }
-
-
     }
-
-
 }
