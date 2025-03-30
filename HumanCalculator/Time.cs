@@ -31,7 +31,7 @@ namespace HumanCalculator
             }
             catch (OverflowException e)
             {
-                
+                _logger.LogError(e.ToString());
             }
         }
         public string ShowAverageTime()
