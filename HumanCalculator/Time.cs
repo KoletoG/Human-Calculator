@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Serilog.Core;
 
 namespace HumanCalculator
 {
@@ -10,9 +12,11 @@ namespace HumanCalculator
     {
         public int[] Times { get; private set; }
         public int AverageTime { get; private set; }
-        public Time()
+        private ILogger<Time> _logger;
+        public Time(ILogger<Time> logger)
         {
             Times = new int[Score.MaximumScore];
+            _logger= logger;
         }
         public void CalcAverageTime()
         {
@@ -27,7 +31,7 @@ namespace HumanCalculator
             }
             catch (OverflowException e)
             {
-                Console.WriteLine("Time exceeded any limit");
+                
             }
         }
         public string ShowAverageTime()

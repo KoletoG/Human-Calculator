@@ -26,6 +26,11 @@ namespace HumanCalculator
         IScore PlayerScore { get; }
         string GetStats();
     }
+    interface IGameService
+    {
+        void RepeatGame();
+        IScore StartGame();
+    }
     internal class Interfaces
     {
     }
