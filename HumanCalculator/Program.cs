@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 using static System.Formats.Asn1.AsnWriter;
 namespace HumanCalculator
@@ -11,62 +12,91 @@ namespace HumanCalculator
         private static Stopwatch stopwatch = new Stopwatch();
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Human Calculator Game! \nPress Any Key to Start");
-            if (Console.ReadKey(intercept: true).Key >= 0)
+            try
             {
-                while (true)
+                Console.WriteLine("Welcome to Human Calculator Game! \nPress Any Key to Start");
+                CancellationTokenSource cancellationToken = new CancellationTokenSource();
+                if (Console.ReadKey(intercept: true).Key >= 0)
                 {
-                    RepeatGame();
-                    if (Console.ReadKey(intercept: true).Key != ConsoleKey.Enter)
+                    while (!cancellationToken.IsCancellationRequested)
                     {
-                        break;
+                        RepeatGame();
+                        if (Console.ReadKey(intercept: true).Key != ConsoleKey.Enter)
+                        {
+                            cancellationToken.Cancel();
+                        }
                     }
                 }
             }
-            Console.WriteLine("Thanks for playing!");
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                Console.WriteLine("Thanks for playing!");
+            }
         }
         private static void RepeatGame()
         {
             using (StreamWriter streamWriter = new StreamWriter(@"..\..\score.txt", true))
             {
-                IScore score = StartGame();
-                Console.WriteLine("Please type your nickname: ");
-                string playerName = Console.ReadLine() ?? "N/A";
-                IPlayer player = new Player(playerName, score);
-                streamWriter.WriteLine($"{player.GetStats()} at {DateTime.UtcNow}");
-                Console.WriteLine("If you want to play again press ENTER");
+                try
+                {
+                    IScore score = StartGame();
+                    Console.WriteLine("Please type your nickname: ");
+                    streamWriter.WriteLine($"{new Player(Console.ReadLine() ?? "N/A", score).GetStats()} at {DateTime.UtcNow}");
+                    Console.WriteLine("If you want to play again press ENTER");
+                }
+                catch (Exception ex) {
+                    Console.WriteLine(ex);
+                }
             }
         }
         private static IScore StartGame()
         {
             IScore score = new Score();
-            for (int i = 1; i <= Score.MaximumScore; i++)
+            try
             {
-                int result = GenerateNumbers();
-                stopwatch.Restart();
-                if (int.TryParse(Console.ReadLine(), out int playerAnswer) && playerAnswer == result)
+                for (int i = 1; i <= Score.MaximumScore; i++)
                 {
-                    stopwatch.Stop();
-                    score.AddTime((int)stopwatch.Elapsed.TotalSeconds);
-                    score.AddScore();
-                    Console.WriteLine("Right!");
+                    int result = GenerateNumbers();
+                    stopwatch.Restart();
+                    if (int.TryParse(Console.ReadLine(), out int playerAnswer) && playerAnswer == result)
+                    {
+                        stopwatch.Stop();
+                        score.AddTime((int)stopwatch.Elapsed.TotalSeconds);
+                        score.AddScore();
+                        Console.WriteLine("Right!");
+                    }
+                    else
+                    {
+                        stopwatch.Stop();
+                        score.AddTime((int)stopwatch.Elapsed.TotalSeconds);
+                        Console.WriteLine("Wrong!");
+                    }
                 }
-                else
-                {
-                    stopwatch.Stop();
-                    score.AddTime((int)stopwatch.Elapsed.TotalSeconds);
-                    Console.WriteLine("Wrong!");
-                }
+                score.Time.CalcAverageTime();
             }
-            score.Time.CalcAverageTime();
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
             return score;
         }
         private static int GenerateNumbers()
         {
-            int a = rnd.Next(10, 100);
-            int b = rnd.Next(10, 100);
-            Console.WriteLine($"{a} * {b}");
-            return a * b;
+            try
+            {
+                int a = rnd.Next(10, 100);
+                int b = rnd.Next(10, 100);
+                Console.WriteLine($"{a} * {b}");
+                return a * b;
+            }
+            catch (Exception e) { 
+                
+            }
+            return 0;
         }
     }
 

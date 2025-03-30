@@ -18,16 +18,33 @@ namespace HumanCalculator
         }
         public void AddTime(int seconds)
         {
-            this.Time.Times[currentLoop]=seconds;
-            currentLoop++;
+            try
+            {
+                this.Time.Times[currentLoop] = seconds;
+                currentLoop++;
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine("Index for Times array was out of range");
+            }
+            catch (Exception e) {
+                Console.WriteLine(e);
+            }
         }
         public void AddScore()
         {
-            if (this.CurrentScore >= MaximumScore)
+            try
             {
-                throw new MaximumScoreExceedingException(this.CurrentScore);
+                if (this.CurrentScore >= MaximumScore)
+                {
+                    throw new MaximumScoreExceedingException(this.CurrentScore);
+                }
+                this.CurrentScore++;
             }
-            this.CurrentScore++;
+            catch(MaximumScoreExceedingException e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }
