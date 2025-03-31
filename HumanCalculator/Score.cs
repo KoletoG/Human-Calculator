@@ -14,11 +14,9 @@ namespace HumanCalculator
         public ITime Time { get; private set; }
         private int currentLoop = 0;
         private ILogger<Score> _logger;
-        private ITimeFactory _timeFactory;
-        public Score(ILogger<Score> logger, ILogger<Time> loggerTime, ITimeFactory timeFactory)
+        public Score(ILogger<Score> logger, ILogger<Time> loggerTime, ITime time)
         {
-            _timeFactory = timeFactory;
-            this.Time = _timeFactory.Create();
+            this.Time = time;
             this._logger = logger;  
         }
         public void AddTime(int seconds)
@@ -28,7 +26,7 @@ namespace HumanCalculator
                 this.Time.Times[currentLoop] = seconds;
                 currentLoop++;
             }
-            catch (IndexOutOfRangeException e)
+            catch (IndexOutOfRangeException)
             {
                 _logger.LogError("Index for Times array was out of range");
             }
