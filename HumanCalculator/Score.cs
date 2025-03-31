@@ -14,9 +14,11 @@ namespace HumanCalculator
         public ITime Time { get; private set; }
         private int currentLoop = 0;
         private ILogger<Score> _logger;
-        public Score(ILogger<Score> logger, ILogger<Time> loggerTime)
+        private ITimeFactory _timeFactory;
+        public Score(ILogger<Score> logger, ILogger<Time> loggerTime, ITimeFactory timeFactory)
         {
-            this.Time = new Time(loggerTime);
+            _timeFactory = timeFactory;
+            this.Time = _timeFactory.Create();
             this._logger = logger;  
         }
         public void AddTime(int seconds)

@@ -30,6 +30,7 @@ namespace HumanCalculator
             .AddSingleton<ITime, Time>()
             .AddSingleton<IGameService, GameService>()
             .AddSingleton<IScoreFactory, ScoreFactory>()
+            .AddSingleton<ITimeFactory,TimeFactory>()
             .BuildServiceProvider();
         }
         private void Run()
@@ -46,7 +47,7 @@ namespace HumanCalculator
                     while (!cancellationToken.IsCancellationRequested)
                     {
                         gameService.RepeatGame();
-                        if (Console.ReadKey(intercept: true).Key != ConsoleKey.Enter)
+                        if (Console.ReadKey(intercept: true).Key == ConsoleKey.Enter)
                         {
                             cancellationToken.Cancel();
                         }

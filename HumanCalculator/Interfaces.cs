@@ -24,7 +24,10 @@ namespace HumanCalculator
     {
         IScore Create();
     }
-
+    public interface ITimeFactory
+    {
+        ITime Create();
+    }
     interface IPlayer
     {
         string Name { get; }

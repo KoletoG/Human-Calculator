@@ -82,13 +82,10 @@ namespace HumanCalculator
                 Console.WriteLine($"{a} * {b}");
                 return a * b;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                _logger.LogError(e.ToString());
-            }
-            finally
-            {
-                throw new Exception();
+                _logger.LogError(ex.ToString());
+                return 0;
             }
         }
     }
