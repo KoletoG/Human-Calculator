@@ -20,6 +20,11 @@ namespace HumanCalculator
         void AddTime(int seconds);
         void AddScore();
     }
+    interface IScoreFactory
+    {
+        IScore Create();
+    }
+
     interface IPlayer
     {
         string Name { get; }

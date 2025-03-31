@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace HumanCalculator
@@ -16,11 +17,13 @@ namespace HumanCalculator
         private ILogger<Score> scoreLogger;
         private ILogger<Time> timeLogger;
         private readonly string fullPath = Path.GetFullPath("score.txt");
-        public GameService(ILogger<GameService> logger, ILogger<Score> scoreLogger, ILogger<Time> timeLogger)
+        private static IScoreFactory _factory;
+        public GameService(ILogger<GameService> logger, ILogger<Score> scoreLogger, ILogger<Time> timeLogger, IScoreFactory factory)
         {
             _logger = logger;
             this.scoreLogger = scoreLogger;
             this.timeLogger = timeLogger;
+            _factory = factory;
         }
         public void RepeatGame()
         {
@@ -41,7 +44,7 @@ namespace HumanCalculator
         }
         private IScore StartGame()
         {
-            IScore score = new Score(scoreLogger,timeLogger);
+            IScore score = _factory.Create();
             try
             {
                 for (int i = 1; i <= Score.MaximumScore; i++)

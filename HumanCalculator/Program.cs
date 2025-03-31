@@ -25,6 +25,7 @@ namespace HumanCalculator
             collection.AddSingleton<IPlayer, Player>();
             collection.AddSingleton<ITime, Time>();
             collection.AddSingleton<IGameService, GameService>();
+            collection.AddSingleton<IScoreFactory,ScoreFactory>();
             _service = collection.BuildServiceProvider();
         }
         static void Main(string[] args)
