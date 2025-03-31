@@ -20,7 +20,7 @@ namespace HumanCalculator
             Log.Logger = new LoggerConfiguration()
            .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
            .CreateLogger();
-            var collection = new ServiceCollection()
+            return new ServiceCollection()
             .AddLogging(loggingBuilder =>
             {
                 loggingBuilder.AddSerilog();
@@ -29,8 +29,8 @@ namespace HumanCalculator
             .AddSingleton<IPlayer, Player>()
             .AddSingleton<ITime, Time>()
             .AddSingleton<IGameService, GameService>()
-            .AddSingleton<IScoreFactory, ScoreFactory>();
-            return collection.BuildServiceProvider();
+            .AddSingleton<IScoreFactory, ScoreFactory>()
+            .BuildServiceProvider();
         }
         private void Run()
         {

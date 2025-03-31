@@ -17,7 +17,7 @@ namespace HumanCalculator
         private ILogger<Score> scoreLogger;
         private ILogger<Time> timeLogger;
         private readonly string fullPath = Path.GetFullPath("score.txt");
-        private static IScoreFactory _factory;
+        private readonly IScoreFactory _factory;
         public GameService(ILogger<GameService> logger, ILogger<Score> scoreLogger, ILogger<Time> timeLogger, IScoreFactory factory)
         {
             _logger = logger;
@@ -27,19 +27,19 @@ namespace HumanCalculator
         }
         public void RepeatGame()
         {
-            using (StreamWriter streamWriter = new StreamWriter(fullPath, true))
+            try
             {
-                try
+                using (StreamWriter streamWriter = new StreamWriter(fullPath, true))
                 {
                     IScore score = StartGame();
                     Console.WriteLine("Please type your nickname: ");
                     streamWriter.WriteLine($"{new Player(Console.ReadLine() ?? "N/A", score).GetStats()} at {DateTime.UtcNow}");
                     Console.WriteLine("If you want to play again press ENTER");
                 }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex.ToString());
-                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
             }
         }
         private IScore StartGame()
@@ -86,7 +86,10 @@ namespace HumanCalculator
             {
                 _logger.LogError(e.ToString());
             }
-            return 0;
+            finally
+            {
+                throw new Exception();
+            }
         }
     }
 }
