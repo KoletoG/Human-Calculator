@@ -10,25 +10,29 @@ namespace HumanCalculator
 {
     internal class Program
     {
-        private static IServiceProvider _service;
-        static Program()
+        private readonly IServiceProvider _service;
+        public Program()
+        {
+            _service = BuildServiceProvider();
+        }
+        private IServiceProvider BuildServiceProvider()
         {
             Log.Logger = new LoggerConfiguration()
            .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
            .CreateLogger();
-            var collection = new ServiceCollection();
-            collection.AddLogging(loggingBuilder => 
+            var collection = new ServiceCollection()
+            .AddLogging(loggingBuilder =>
             {
                 loggingBuilder.AddSerilog();
-            });
-            collection.AddSingleton<IScore, Score>();
-            collection.AddSingleton<IPlayer, Player>();
-            collection.AddSingleton<ITime, Time>();
-            collection.AddSingleton<IGameService, GameService>();
-            collection.AddSingleton<IScoreFactory,ScoreFactory>();
-            _service = collection.BuildServiceProvider();
+            })
+            .AddSingleton<IScore, Score>()
+            .AddSingleton<IPlayer, Player>()
+            .AddSingleton<ITime, Time>()
+            .AddSingleton<IGameService, GameService>()
+            .AddSingleton<IScoreFactory, ScoreFactory>();
+            return collection.BuildServiceProvider();
         }
-        static void Main(string[] args)
+        private void Run()
         {
             var logger = _service.GetRequiredService<ILogger<Program>>();
             var gameService = _service.GetRequiredService<IGameService>();
@@ -59,6 +63,11 @@ namespace HumanCalculator
                 logger.LogInformation("App has stopped.");
                 Log.CloseAndFlush();
             }
+        }
+        static void Main(string[] args)
+        {
+            Program program = new Program();
+            program.Run();
         }
     }
 }
