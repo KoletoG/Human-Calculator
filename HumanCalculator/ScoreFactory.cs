@@ -14,6 +14,10 @@ namespace HumanCalculator
         {
             serviceProvider = service;
         }
+        /// <summary>
+        /// Creates a new instance of IScore
+        /// </summary>
+        /// <returns>A new instance of IScore</returns>
         public IScore Create()
         {
             return serviceProvider.GetRequiredService<IScore>();

@@ -19,6 +19,10 @@ namespace HumanCalculator
             this.Time = time;
             this._logger = logger;  
         }
+        /// <summary>
+        /// Adds the completed time of the calculation
+        /// </summary>
+        /// <param name="seconds">Time of the calculation</param>
         public void AddTime(int seconds)
         {
             try
@@ -34,6 +38,9 @@ namespace HumanCalculator
                 _logger.LogError(e.ToString());
             }
         }
+        /// <summary>
+        /// Adds successful attempts to score
+        /// </summary>
         public void AddScore()
         {
             try

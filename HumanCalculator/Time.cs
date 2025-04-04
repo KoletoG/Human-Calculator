@@ -18,6 +18,9 @@ namespace HumanCalculator
             Times = new int[Score.MaximumScore];
             _logger= logger;
         }
+        /// <summary>
+        /// Calculates the average time of all the completed times
+        /// </summary>
         public void CalcAverageTime()
         {
             try
@@ -34,6 +37,10 @@ namespace HumanCalculator
                 _logger.LogError(e.ToString());
             }
         }
+        /// <summary>
+        /// Shows the average time
+        /// </summary>
+        /// <returns>String with the average time formulated by minutes and seconds</returns>
         public string ShowAverageTime()
         {
             return TimeSpan.FromSeconds(AverageTime).ToString(@"mm\:ss");

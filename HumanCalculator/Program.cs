@@ -15,6 +15,10 @@ namespace HumanCalculator
         {
             _service = BuildServiceProvider();
         }
+        /// <summary>
+        /// Sets up Dependency injection
+        /// </summary>
+        /// <returns>DI service</returns>
         private IServiceProvider BuildServiceProvider()
         {
             Log.Logger = new LoggerConfiguration()
@@ -32,6 +36,9 @@ namespace HumanCalculator
             .AddSingleton<IScoreFactory, ScoreFactory>()
             .BuildServiceProvider();
         }
+        /// <summary>
+        /// Main logic of the application
+        /// </summary>
         private void Run()
         {
             var logger = _service.GetRequiredService<ILogger<Program>>();
@@ -64,6 +71,10 @@ namespace HumanCalculator
                 Log.CloseAndFlush();
             }
         }
+        /// <summary>
+        /// Starts the application
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             Program program = new Program();

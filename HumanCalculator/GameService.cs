@@ -25,6 +25,9 @@ namespace HumanCalculator
             this.timeLogger = timeLogger;
             _factory = factory;
         }
+        /// <summary>
+        /// Repeats the game when last one ends
+        /// </summary>
         public void RepeatGame()
         {
             try
@@ -42,6 +45,10 @@ namespace HumanCalculator
                 _logger.LogError(ex.ToString());
             }
         }
+        /// <summary>
+        /// .Starts the game
+        /// </summary>
+        /// <returns>Game running</returns>
         private IScore StartGame()
         {
             IScore score = _factory.Create();
@@ -73,6 +80,10 @@ namespace HumanCalculator
             }
             return score;
         }
+        /// <summary>
+        /// Generates 2 double digit numbers
+        /// </summary>
+        /// <returns>The multiplication of them</returns>
         private int GenerateNumbers()
         {
             try
