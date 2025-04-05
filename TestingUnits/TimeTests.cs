@@ -37,5 +37,16 @@ namespace TestingUnits
             }
             Assert.Throws<OverflowException>(Time.CalcAverageTime);
         }
+        [Fact]
+        public void ShowAverageTime_ReturnsStringWithAverageTime()
+        {
+            for (int i = 0; i < Score.MaximumScore; i++)
+            {
+                Time.Times[i] = 10;
+            }
+            Time.CalcAverageTime();
+            string output = Time.ShowAverageTime();
+            Assert.Contains("00:10", output);
+        }
     }
 }
