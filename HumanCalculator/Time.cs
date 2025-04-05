@@ -18,6 +18,10 @@ namespace HumanCalculator
             Times = new int[Score.MaximumScore];
             _logger= logger;
         }
+        public void SetTimeArray()
+        {
+            Times = new int[Score.MaximumScore];
+        }
         /// <summary>
         /// Calculates the average time of all the completed times
         /// </summary>

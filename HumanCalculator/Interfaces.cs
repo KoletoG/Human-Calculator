@@ -12,6 +12,7 @@ namespace HumanCalculator
         int AverageTime { get; }
         void CalcAverageTime();
         string ShowAverageTime();
+        void SetTimeArray();
     }
     interface IScore
     {

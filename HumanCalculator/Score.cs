@@ -33,9 +33,11 @@ namespace HumanCalculator
             catch (IndexOutOfRangeException)
             {
                 _logger.LogError("Index for Times array was out of range");
+                throw;
             }
             catch (Exception e) {
                 _logger.LogError(e.ToString());
+                throw;
             }
         }
         /// <summary>
@@ -54,6 +56,7 @@ namespace HumanCalculator
             catch(MaximumScoreExceedingException e)
             {
                 _logger.LogError(e.ToString());
+                throw;
             }
         }
     }
