@@ -25,16 +25,20 @@ namespace HumanCalculator
         {
             try
             {
-                int allTime = 0;
-                foreach (int t in Times)
+                checked
                 {
-                    allTime += t;
+                    int allTime = 0;
+                    foreach (int t in Times)
+                    {
+                        allTime += t;
+                    }
+                    this.AverageTime = allTime / Score.MaximumScore;
                 }
-                this.AverageTime = allTime / Score.MaximumScore;
             }
             catch (OverflowException e)
             {
                 _logger.LogError(e.ToString());
+                throw;
             }
         }
         /// <summary>
