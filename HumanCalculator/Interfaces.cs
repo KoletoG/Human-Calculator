@@ -14,7 +14,7 @@ namespace HumanCalculator
         string ShowAverageTime();
         void SetTimeArray();
     }
-    interface IScore
+    public interface IScore
     {
         ITime Time { get; }
         int CurrentScore { get; }
@@ -25,7 +25,7 @@ namespace HumanCalculator
     {
         IScore Create();
     }
-    interface IPlayer
+    public interface IPlayer
     {
         string Name { get; }
         IScore PlayerScore { get; }

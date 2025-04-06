@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HumanCalculator
 {
-    class Player : IPlayer
+    public class Player : IPlayer
     {
         public string Name { get; private set; }
         public IScore PlayerScore { get; private set; }
