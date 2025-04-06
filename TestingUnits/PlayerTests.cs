@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HumanCalculator;
+using HumanCalculator.Interfaces;
+using HumanCalculator.Models;
 using Moq;
 
 namespace TestingUnits

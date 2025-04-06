@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HumanCalculator.Interfaces;
 using Microsoft.Extensions.Logging;
 using Serilog.Core;
 
-namespace HumanCalculator
+namespace HumanCalculator.Models
 {
    public class Time : ITime
     {
@@ -36,7 +37,7 @@ namespace HumanCalculator
                     {
                         allTime += t;
                     }
-                    this.AverageTime = allTime / Score.MaximumScore;
+                    AverageTime = allTime / Score.MaximumScore;
                 }
             }
             catch (OverflowException e)

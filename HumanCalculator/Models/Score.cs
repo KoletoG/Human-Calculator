@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HumanCalculator.Exceptions;
+using HumanCalculator.Interfaces;
 using Microsoft.Extensions.Logging;
 
-namespace HumanCalculator
+namespace HumanCalculator.Models
 {
    public class Score : IScore
     {
@@ -16,8 +18,8 @@ namespace HumanCalculator
         private ILogger<Score> _logger;
         public Score(ILogger<Score> logger, ILogger<Time> loggerTime, ITime time)
         {
-            this.Time = time;
-            this._logger = logger;  
+            Time = time;
+            _logger = logger;  
         }
         /// <summary>
         /// Adds the completed time of the calculation
@@ -27,7 +29,7 @@ namespace HumanCalculator
         {
             try
             {
-                this.Time.Times[currentLoop] = seconds;
+                Time.Times[currentLoop] = seconds;
                 currentLoop++;
             }
             catch (IndexOutOfRangeException)
@@ -47,11 +49,11 @@ namespace HumanCalculator
         {
             try
             {
-                if (this.CurrentScore >= MaximumScore)
+                if (CurrentScore >= MaximumScore)
                 {
-                    throw new MaximumScoreExceedingException(this.CurrentScore);
+                    throw new MaximumScoreExceedingException(CurrentScore);
                 }
-                this.CurrentScore++;
+                CurrentScore++;
             }
             catch(MaximumScoreExceedingException e)
             {

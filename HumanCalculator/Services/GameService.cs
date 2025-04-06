@@ -4,10 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HumanCalculator.Interfaces;
+using HumanCalculator.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace HumanCalculator
+namespace HumanCalculator.Services
 {
     internal class GameService : IGameService
     {

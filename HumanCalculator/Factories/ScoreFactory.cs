@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HumanCalculator.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HumanCalculator
+namespace HumanCalculator.Factories
 {
     internal class ScoreFactory : IScoreFactory
     {

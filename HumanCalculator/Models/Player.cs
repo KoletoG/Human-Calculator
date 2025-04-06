@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HumanCalculator.Interfaces;
 
-namespace HumanCalculator
+namespace HumanCalculator.Models
 {
     public class Player : IPlayer
     {
@@ -12,8 +13,8 @@ namespace HumanCalculator
         public IScore PlayerScore { get; private set; }
         public Player(string name, IScore score)
         {
-            this.Name = name;
-            this.PlayerScore = score;
+            Name = name;
+            PlayerScore = score;
         }
         public string GetStats()
         {

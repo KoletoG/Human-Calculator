@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Castle.Core.Logging;
-using HumanCalculator;
+using HumanCalculator.Exceptions;
+using HumanCalculator.Models;
 using Microsoft.Extensions.Logging;
 using Moq;
 
