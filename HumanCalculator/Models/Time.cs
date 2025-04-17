@@ -13,7 +13,7 @@ namespace HumanCalculator.Models
     {
         public int[] Times { get; private set; }
         public int AverageTime { get; private set; }
-        private ILogger<Time> _logger;
+        private readonly ILogger<Time> _logger;
         public Time(ILogger<Time> logger)
         {
             Times = new int[Score.MaximumScore];

@@ -10,7 +10,7 @@ namespace HumanCalculator.Factories
 {
     internal class ScoreFactory : IScoreFactory
     {
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
         public ScoreFactory(IServiceProvider service)
         {
             serviceProvider = service;

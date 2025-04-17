@@ -13,9 +13,9 @@ namespace HumanCalculator.Models
     {
         public const int MaximumScore = 5;
         public int CurrentScore { get; private set; } = 0;
-        public ITime Time { get; private set; }
+        public ITime Time { get; private init; }
         private int currentLoop = 0;
-        private ILogger<Score> _logger;
+        private readonly ILogger<Score> _logger;
         public Score(ILogger<Score> logger, ILogger<Time> loggerTime, ITime time)
         {
             Time = time;

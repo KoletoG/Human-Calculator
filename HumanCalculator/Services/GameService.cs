@@ -14,9 +14,9 @@ namespace HumanCalculator.Services
     internal class GameService : IGameService
     {
         private Stopwatch stopwatch = new Stopwatch();
-        private ILogger<GameService> _logger;
-        private ILogger<Score> scoreLogger;
-        private ILogger<Time> timeLogger;
+        private readonly ILogger<GameService> _logger;
+        private readonly ILogger<Score> scoreLogger;
+        private readonly ILogger<Time> timeLogger;
         private readonly string fullPath = Path.GetFullPath("score.txt");
         private readonly IScoreFactory _factory;
         public GameService(ILogger<GameService> logger, ILogger<Score> scoreLogger, ILogger<Time> timeLogger, IScoreFactory factory)

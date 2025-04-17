@@ -9,8 +9,8 @@ namespace HumanCalculator.Models
 {
     public class Player : IPlayer
     {
-        public string Name { get; private set; }
-        public IScore PlayerScore { get; private set; }
+        public string Name { get; private init; }
+        public IScore PlayerScore { get; private init; }
         public Player(string name, IScore score)
         {
             Name = name;
