@@ -9,7 +9,7 @@ using Serilog.Core;
 
 namespace HumanCalculator.Models
 {
-   public class Time : ITime
+    public class Time : ITime
     {
         public int[] Times { get; private set; }
         public int AverageTime { get; private set; }
@@ -17,7 +17,7 @@ namespace HumanCalculator.Models
         public Time(ILogger<Time> logger)
         {
             Times = new int[Score.MaximumScore];
-            _logger= logger;
+            _logger = logger;
         }
         public void SetTimeArray()
         {
@@ -33,9 +33,9 @@ namespace HumanCalculator.Models
                 checked
                 {
                     int allTime = 0;
-                    foreach (int t in Times)
+                    for (int i = 0; i < Times.Length; i++)
                     {
-                        allTime += t;
+                        allTime += Times[i];
                     }
                     AverageTime = allTime / Score.MaximumScore;
                 }

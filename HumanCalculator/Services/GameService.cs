@@ -13,7 +13,6 @@ namespace HumanCalculator.Services
 {
     internal class GameService : IGameService
     {
-        private Random rnd = new Random();
         private Stopwatch stopwatch = new Stopwatch();
         private ILogger<GameService> _logger;
         private ILogger<Score> scoreLogger;
@@ -90,6 +89,7 @@ namespace HumanCalculator.Services
         {
             try
             {
+                Random rnd = new Random();
                 int a = rnd.Next(10, 100);
                 int b = rnd.Next(10, 100);
                 Console.WriteLine($"{a} * {b}");
