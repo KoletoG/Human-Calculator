@@ -29,8 +29,7 @@ namespace HumanCalculator.Models
         {
             try
             {
-                Time.Times[currentLoop] = seconds;
-                currentLoop++;
+                Time.Times[currentLoop++] = seconds;
             }
             catch (IndexOutOfRangeException)
             {
