@@ -89,9 +89,8 @@ namespace HumanCalculator.Services
         {
             try
             {
-                Random rnd = new Random();
-                int a = rnd.Next(10, 100);
-                int b = rnd.Next(10, 100);
+                int a = Random.Shared.Next(10, 100);
+                int b = Random.Shared.Next(10, 100);
                 Console.WriteLine($"{a} * {b}");
                 return a * b;
             }
